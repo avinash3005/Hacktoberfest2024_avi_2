@@ -1,0 +1,56 @@
+# Function to calculate average scores
+def calculate_average(scores):
+    return sum(scores) / len(scores)
+
+# Function to find the top performer
+def find_top_performer(students):
+    top_student = None
+    highest_average = 0
+
+    for student in students:
+        name = student['Name']
+        average = student['Average']
+        if average > highest_average:
+            highest_average = average
+            top_student = student
+    
+    return top_student
+
+# Main program
+def main():
+    # List to store student data
+    students = []
+
+    # Get student data from user
+    num_students = int(input("Enter the number of students: "))
+    for _ in range(num_students):
+        name = input("Enter student name: ")
+        scores = input("Enter scores (comma-separated): ")
+        scores = list(map(int, scores.split(',')))
+
+        # Calculate average
+        average = calculate_average(scores)
+
+        # Store student data
+        students.append({'Name': name, 'Scores': scores, 'Average': average})
+
+    # Display all student data
+    print("\nStudent Performance Data:")
+    for student in students:
+        print(f"Name: {student['Name']}, Scores: {student['Scores']}, Average: {student['Average']:.2f}")
+
+    # Find and display top performer
+    top_performer = find_top_performer(students)
+    print(f"\nTop Performer: {top_performer['Name']} with an average score of {top_performer['Average']:.2f}")
+
+# Execute the program
+if __name__ == "__main__":
+    main()
+"""Enter the number of students: 3
+Enter student name: Alice
+Enter scores (comma-separated): 85,90,78
+Enter student name: Bob
+Enter scores (comma-separated): 78,82,85
+Enter student name: Charlie
+Enter scores (comma-separated): 92,88,95
+"""
